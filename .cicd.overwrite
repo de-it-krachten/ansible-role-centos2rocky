@@ -1,0 +1,33 @@
+---
+
+# Generic
+generic:
+  role: ansible-role-centos2rocky
+  role_short: centos2rocky
+  role_description: |
+    Role to migrate from CentOS 8 -> RockyLinux 8
+    It works for servers and containers
+
+# Supported platforms
+platforms:
+  - name: CentOS 8
+    image: centos8
+
+# Ansible galaxy
+galaxy:
+  platforms:
+    - name: EL
+      versions:
+        - 8
+
+# molecule
+molecule:
+  active: true
+  platforms:
+    - name: centos8
+      image: "geerlingguy/docker-centos8-ansible:latest"
+      pre_build_image: false
+
+#ci_templates:
+#  molecule.yml.j2:
+#    force: false

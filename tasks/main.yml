@@ -1,0 +1,56 @@
+---
+
+- name: CentOS 8 is only platform supported
+  assert:
+    that:
+      - ansible_distribution == 'CentOS'
+      - ansible_distribution_major_version|int == 8
+  tags: molecule-idempotence-notest
+
+- name: Create remote directory (dokcer only)
+  file:
+    path: /root/.ansible/tmp
+    state: directory
+    mode: "0700"
+  when: ansible_virtualization_type == "docker"
+
+# Switch to CentOS 8 vault mirrors and patch to latest versions
+- name: Get all repo files
+  find:
+    paths: /etc/yum.repos.d
+    patterns: 'CentOS-Linux-*'
+  register: _repo
+
+- name: Update repo files to point to CentOS vault mirror (1)
+  replace:
+    path: "{{ item.path }}"
+    regexp: "^mirrorlist"
+    replace: "#mirrorlist"
+  loop: "{{ _repo.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: Update repo files to point to CentOS vault mirror (2)
+  replace:
+    path: "{{ item.path }}"
+    regexp: "^#baseurl=http://mirror.centos.org"
+    replace: "baseurl=http://vault.epel.cloud"
+  loop: "{{ _repo.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: Upgrade CentOS to latest/vault state
+  dnf:
+    name: '*'
+    state: latest  # noqa package-latest
+
+# Retrieve latest migration script
+- name: Retrieve migration script
+  get_url:
+    url: https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
+    dest: /tmp/migrate2rocky.sh
+    mode: '0755'
+
+- name: Execute the migration
+  command: bash /tmp/migrate2rocky.sh -r  # noqa no-changed-when
+  tags: molecule-idempotence-notest
