@@ -3,11 +3,11 @@
 
 # ansible-role-centos2rocky
 
-Role to migrate fron CentOS 8 -> RockyLinux 8 
+Role to migrate from CentOS 8 -> RockyLinux 8
+It works for servers and containers
 
 
-Platforms
---------------
+## Platforms
 
 Supported platforms
 
@@ -16,16 +16,16 @@ Supported platforms
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
 
-Role Variables
---------------
+## Role Variables
+### defaults/main.yml
 <pre><code>
 
 </pre></code>
 
 
-Example Playbook
-----------------
 
+## Example Playbook
+### molecule/default/converge.yml
 <pre><code>
 - name: sample playbook for role 'centos2rocky'
   hosts: all
