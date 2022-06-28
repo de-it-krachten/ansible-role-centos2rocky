@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.0.0...v1.0.1) (2022-06-28)
+
+
+### Bug Fixes
+
+* skip epel repositories ([46ec40f](https://github.com/de-it-krachten/ansible-role-centos2rocky/commit/46ec40f037077804645e78cc60ffb120a9f906d5))
+
 # 1.0.0 (2022-06-08)
 
 
