@@ -19,7 +19,11 @@ Note:
 ## Role Variables
 ### defaults/main.yml
 <pre><code>
+# Patch host to latest CentOS 8 state
+centos2rocky_centos_upgrade: true
 
+# Migrate host from CentOS to RockyLinux
+centos2rocky_rockylinux_migration: true
 </pre></code>
 
 

@@ -1,0 +1,77 @@
+---
+
+# ----------------------------------------------------------
+# CentOS8 is no longer maintained
+# Final patches ar maintained in the vault.epel.cloud
+# repositories
+# ----------------------------------------------------------
+
+# Switch to CentOS 8 vault mirrors and patch to latest versions
+- name: Get all CentOS repo files
+  find:
+    paths: /etc/yum.repos.d
+    patterns: 'CentOS-Linux-*'
+  register: _repo
+
+- name: Update repo files by deactivating mirrorlist
+  replace:
+    path: "{{ item.path }}"
+    regexp: "^mirrorlist"
+    replace: "#mirrorlist"
+  loop: "{{ _repo.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: Update repo files by pointing then to CentOS vault mirror
+  replace:
+    path: "{{ item.path }}"
+    regexp: "^#baseurl=http://mirror.centos.org"
+    replace: "baseurl=https://vault.epel.cloud"
+  loop: "{{ _repo.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+
+# ----------------------------------------------------------
+# EPEL repositories break the upgrade
+# We will disabled these and re-enable after upgrade is done 
+# ----------------------------------------------------------
+
+- name: Get all active epel repositories
+  shell: |
+    set -o pipefail
+    yum repolist | sed -n '/^epel/p' | sed -r 's/\s.*//' 
+  changed_when: false
+  register: _epel_repo
+
+- name: Reset all epel repositories
+  set_fact:
+    _epel_repo: "{{ _epel_repo.stdout | split('\n') }}"
+
+- name: Show EPEL repositories
+  debug:
+    msg: "{{ _epel_repo }}"
+
+
+# ----------------------------------------------------------
+# Patch CentOS to final level
+# ----------------------------------------------------------
+
+- block:
+
+    - name: Disable all EPEL repositories  # noqa no-changed-when command-instead-of-module
+      command: yum config-manager --disable {{ item }}
+      loop: "{{ _epel_repo }}"
+
+    - name: Upgrade CentOS to latest/vault state
+      dnf:
+        name: '*'
+        state: latest  # noqa package-latest
+
+  always:
+
+    - name: Enable EPEL repositories  # noqa no-changed-when command-instead-of-module
+      command: yum config-manager --enable {{ item }}
+      loop: "{{ _epel_repo }}"
+
+  tags: molecule-idempotence-notest

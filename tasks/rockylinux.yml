@@ -1,0 +1,31 @@
+---
+
+- block:
+
+    - name: Disable all EPEL repositories  # noqa no-changed-when command-instead-of-module
+      command: yum config-manager --disable {{ item }}
+      loop: "{{ _epel_repo }}"
+
+    - name: Retrieve migration script
+      get_url:
+        url: >-
+          https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
+        dest: /tmp/migrate2rocky.sh
+        mode: '0755'
+      environment:
+        https_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
+        http_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
+
+    - name: Execute the migration
+      command: bash /tmp/migrate2rocky.sh -r  # noqa no-changed-when
+      environment:
+        https_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
+        http_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
+
+  always:
+
+    - name: Enable EPEL repositories  # noqa no-changed-when command-instead-of-module
+      command: yum config-manager --enable {{ item }}
+      loop: "{{ _epel_repo }}"
+
+  tags: molecule-idempotence-notest
