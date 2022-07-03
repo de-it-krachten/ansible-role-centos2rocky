@@ -10,24 +10,11 @@ generic:
 
 # Supported platforms
 platforms:
-  - name: CentOS 8
-    image: centos8
-
-# Ansible galaxy
-galaxy:
-  platforms:
-    - name: EL
-      versions:
-        - 8
-
-# molecule
-molecule:
-  active: true
-  platforms:
-    - name: centos8
-      image: "geerlingguy/docker-centos8-ansible:latest"
-      pre_build_image: false
-
-#ci_templates:
-#  molecule.yml.j2:
-#    force: false
+  centos8:
+    name: CentOS 8
+    ci: true
+    supported: true
+    image: "geerlingguy/docker-centos7-ansible:latest"
+    galaxy:
+      name: EL
+      version: 8
