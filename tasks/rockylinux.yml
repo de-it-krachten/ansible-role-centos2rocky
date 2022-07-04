@@ -17,10 +17,15 @@
         http_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
 
     - name: Execute the migration
-      command: bash /tmp/migrate2rocky.sh -r  # noqa no-changed-when
+      shell: bash /tmp/migrate2rocky.sh -r 2>&1  # noqa no-changed-when
       environment:
         https_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
         http_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
+      register: _migration
+
+    - name: Show migration output
+      debug:
+        var: _migration.stdout_lines
 
   always:
 

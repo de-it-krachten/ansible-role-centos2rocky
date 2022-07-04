@@ -10,24 +10,59 @@ generic:
 
 # Supported platforms
 platforms:
-  - name: CentOS 8
-    image: centos8
-
-# Ansible galaxy
-galaxy:
-  platforms:
-    - name: EL
-      versions:
-        - 8
-
-# molecule
-molecule:
-  active: true
-  platforms:
-    - name: centos8
-      image: "geerlingguy/docker-centos8-ansible:latest"
-      pre_build_image: false
-
-#ci_templates:
-#  molecule.yml.j2:
-#    force: false
+  rhel7:
+    supported: false
+    ci: false
+  rhel8:
+    supported: false
+    ci: false
+  rhel9:
+    supported: false
+    ci: false
+  centos7:
+    supported: false
+    ci: false
+  centos8:
+    name: CentOS 8
+    ci: true
+    supported: true
+    image: "geerlingguy/docker-centos8-ansible:latest"
+    galaxy:
+      name: EL
+      version: 8
+  rockylinux8:
+    supported: false
+    ci: false
+  oraclelinux8:
+    supported: false
+    ci: false
+  almalinux8:
+    supported: false
+    ci: false
+  almalinux9:
+    supported: false
+    ci: false
+  debian10:
+    supported: false
+    ci: false
+  debian11:
+    supported: false
+    ci: false
+  ubuntu1804:
+    supported: false
+    ci: false
+  ubuntu2004:
+    supported: false
+    ci: false
+  ubuntu2204:
+    supported: false
+    ci: false
+  fedora35:
+    supported: false
+    ci: false
+  fedora36:
+    supported: false
+    ci: false
+  alpine:
+    supported: false
+    ci: false
