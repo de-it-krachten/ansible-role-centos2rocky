@@ -75,3 +75,8 @@
       loop: "{{ _epel_repo }}"
 
   tags: molecule-idempotence-notest
+
+- name: Install ncurses
+  dnf:
+    name: ncurses
+    state: present
