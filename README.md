@@ -12,6 +12,7 @@ It works for servers and containers
 Supported platforms
 
 - CentOS 8
+- RockyLinux 9
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -33,7 +34,7 @@ centos2rocky_rockylinux_migration: true
 <pre><code>
 - name: sample playbook for role 'centos2rocky'
   hosts: all
-  vars:
+  become: "{{ molecule['converge']['become'] | default('yes') }}"
   tasks:
     - name: Include role 'centos2rocky'
       include_role:
