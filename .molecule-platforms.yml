@@ -2,5 +2,3 @@
 
 - name: centos8
   image: geerlingguy/docker-centos8-ansible:latest
-- name: rockylinux9
-  image: geerlingguy/docker-rockylinux9-ansible:latest
