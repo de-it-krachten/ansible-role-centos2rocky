@@ -57,7 +57,8 @@
 # Patch CentOS to final level
 # ----------------------------------------------------------
 
-- block:
+- name: Patch CentOS
+  block:
 
     - name: Disable all EPEL repositories  # noqa no-changed-when command-instead-of-module
       command: yum config-manager --disable {{ item }}
