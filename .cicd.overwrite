@@ -33,6 +33,9 @@ platforms:
   rockylinux8:
     supported: false
     ci: false
+  rockylinux9:
+    supported: false
+    ci: false
   oraclelinux8:
     supported: false
     ci: false
