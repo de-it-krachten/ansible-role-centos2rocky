@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.0.2...v1.1.0) (2022-07-28)
+
+
+### Features
+
+* Implement ansible-lint v6 support ([9ff77d2](https://github.com/de-it-krachten/ansible-role-centos2rocky/commit/9ff77d20ba23c1e5af8941e00189bc4a474abca4))
+
 ## [1.0.2](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.0.1...v1.0.2) (2022-06-30)
 
 
