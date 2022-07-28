@@ -1,6 +1,7 @@
 ---
 
-- block:
+- name: Perform migration
+  block:
 
     - name: Disable all EPEL repositories  # noqa no-changed-when command-instead-of-module
       command: yum config-manager --disable {{ item }}

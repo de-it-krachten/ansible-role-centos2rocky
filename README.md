@@ -33,7 +33,7 @@ centos2rocky_rockylinux_migration: true
 <pre><code>
 - name: sample playbook for role 'centos2rocky'
   hosts: all
-  vars:
+  become: "{{ molecule['converge']['become'] | default('yes') }}"
   tasks:
     - name: Include role 'centos2rocky'
       include_role:
