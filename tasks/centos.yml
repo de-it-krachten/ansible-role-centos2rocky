@@ -46,7 +46,7 @@
 
 - name: Reset all epel repositories
   ansible.builtin.set_fact:
-    _epel_repo: "{{ _epel_repo.stdout | split('\n') }}"
+    _epel_repo: "{{ _epel_repo.stdout.split('\n') }}"
 
 - name: Show EPEL repositories
   ansible.builtin.debug:
@@ -76,5 +76,5 @@
 
 - name: Install ncurses
   ansible.builtin.dnf:
-    name: Ncurses
+    name: ncurses
     state: present
