@@ -8,13 +8,13 @@
 
 # Switch to CentOS 8 vault mirrors and patch to latest versions
 - name: Get all CentOS repo files
-  find:
+  ansible.builtin.find:
     paths: /etc/yum.repos.d
     patterns: 'CentOS-Linux-*'
   register: _repo
 
 - name: Update repo files by deactivating mirrorlist
-  replace:
+  ansible.builtin.replace:
     path: "{{ item.path }}"
     regexp: "^mirrorlist"
     replace: "#mirrorlist"
@@ -23,7 +23,7 @@
     label: "{{ item.path }}"
 
 - name: Update repo files by pointing then to CentOS vault mirror
-  replace:
+  ansible.builtin.replace:
     path: "{{ item.path }}"
     regexp: "^#baseurl=http://mirror.centos.org"
     replace: "baseurl=https://vault.epel.cloud"
@@ -34,22 +34,22 @@
 
 # ----------------------------------------------------------
 # EPEL repositories break the upgrade
-# We will disabled these and re-enable after upgrade is done 
+# We will disabled these and re-enable after upgrade is done
 # ----------------------------------------------------------
 
 - name: Get all active epel repositories
-  shell: |
+  ansible.builtin.shell: |
     set -o pipefail
-    yum repolist | sed -n '/^epel/p' | sed -r 's/\s.*//' 
+    yum repolist | sed -n '/^epel/p' | sed -r 's/\s.*//'
   changed_when: false
   register: _epel_repo
 
 - name: Reset all epel repositories
-  set_fact:
+  ansible.builtin.set_fact:
     _epel_repo: "{{ _epel_repo.stdout | split('\n') }}"
 
 - name: Show EPEL repositories
-  debug:
+  ansible.builtin.debug:
     msg: "{{ _epel_repo }}"
 
 
@@ -58,26 +58,23 @@
 # ----------------------------------------------------------
 
 - name: Patch CentOS
+  tags: molecule-idempotence-notest
   block:
 
     - name: Disable all EPEL repositories  # noqa no-changed-when command-instead-of-module
-      command: yum config-manager --disable {{ item }}
+      ansible.builtin.command: yum config-manager --disable {{ item }}
       loop: "{{ _epel_repo }}"
 
     - name: Upgrade CentOS to latest/vault state
-      dnf:
+      ansible.builtin.dnf:
         name: '*'
         state: latest  # noqa package-latest
-
   always:
-
     - name: Enable EPEL repositories  # noqa no-changed-when command-instead-of-module
-      command: yum config-manager --enable {{ item }}
+      ansible.builtin.command: yum config-manager --enable {{ item }}
       loop: "{{ _epel_repo }}"
 
-  tags: molecule-idempotence-notest
-
 - name: Install ncurses
-  dnf:
-    name: ncurses
+  ansible.builtin.dnf:
+    name: Ncurses
     state: present
