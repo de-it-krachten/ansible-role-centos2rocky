@@ -1,37 +1,35 @@
 ---
 
 - name: Perform migration
+  tags: molecule-idempotence-notest
   block:
 
     - name: Disable all EPEL repositories  # noqa no-changed-when command-instead-of-module
-      command: yum config-manager --disable {{ item }}
+      ansible.builtin.command: yum config-manager --disable {{ item }}
       loop: "{{ _epel_repo }}"
 
     - name: Retrieve migration script
-      get_url:
+      ansible.builtin.get_url:
         url: >-
           https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
         dest: /tmp/migrate2rocky.sh
         mode: '0755'
       environment:
-        https_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
-        http_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
+        https_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use | bool) else '' }}"
+        http_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use | bool) else '' }}"
 
     - name: Execute the migration
-      shell: bash /tmp/migrate2rocky.sh -r 2>&1  # noqa no-changed-when
+      ansible.builtin.shell: bash /tmp/migrate2rocky.sh -r 2>&1  # noqa no-changed-when
       environment:
-        https_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
-        http_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use|bool) else '' }}"
+        https_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use | bool) else '' }}"
+        http_proxy: "{{ proxy_url if (proxy_use is defined and proxy_use | bool) else '' }}"
       register: _migration
 
     - name: Show migration output
-      debug:
+      ansible.builtin.debug:
         var: _migration.stdout_lines
-
   always:
-
     - name: Enable EPEL repositories  # noqa no-changed-when command-instead-of-module
-      command: yum config-manager --enable {{ item }}
+      ansible.builtin.command: yum config-manager --enable {{ item }}
       loop: "{{ _epel_repo }}"
 
-  tags: molecule-idempotence-notest

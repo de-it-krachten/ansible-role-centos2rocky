@@ -1,21 +1,23 @@
 ---
 
 - name: CentOS 8 is only platform supported
-  assert:
+  ansible.builtin.assert:
     that:
       - ansible_distribution == 'CentOS'
-      - ansible_distribution_major_version|int == 8
+      - ansible_distribution_major_version | int == 8
   tags: molecule-idempotence-notest
 
 - name: Create remote directory (docker only)
-  file:
+  ansible.builtin.file:
     path: /root/.ansible/tmp
     state: directory
     mode: "0700"
   when: ansible_virtualization_type == "docker"
 
-- include_tasks: centos.yml
-  when: centos2rocky_centos_upgrade|bool
+- name: Include centos.yml
+  ansible.builtin.include_tasks: centos.yml
+  when: centos2rocky_centos_upgrade | bool
 
-- include_tasks: rockylinux.yml
-  when: centos2rocky_rockylinux_migration|bool
+- name: Include rockylinux.yml
+  ansible.builtin.include_tasks: rockylinux.yml
+  when: centos2rocky_rockylinux_migration | bool
