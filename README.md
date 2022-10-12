@@ -7,6 +7,15 @@ Role to migrate from CentOS 8 -> RockyLinux 8
 It works for servers and containers
 
 
+
+## Dependencies
+
+#### Roles
+None
+
+#### Collections
+- community.general
+
 ## Platforms
 
 Supported platforms
@@ -28,6 +37,7 @@ centos2rocky_rockylinux_migration: true
 
 
 
+
 ## Example Playbook
 ### molecule/default/converge.yml
 <pre><code>
@@ -36,6 +46,6 @@ centos2rocky_rockylinux_migration: true
   become: "{{ molecule['converge']['become'] | default('yes') }}"
   tasks:
     - name: Include role 'centos2rocky'
-      include_role:
+      ansible.builtin.include_role:
         name: centos2rocky
 </pre></code>
