@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.1.0...v1.2.0) (2022-10-12)
+
+
+### Features
+
+* Move to FQCN ([443e677](https://github.com/de-it-krachten/ansible-role-centos2rocky/commit/443e677932202246a87ebc4bd606af639a567809))
+* Update CI to latest standards ([3fc2c5b](https://github.com/de-it-krachten/ansible-role-centos2rocky/commit/3fc2c5b29294d16f65e78dc32fadf6ecb1a408bf))
+
 # [1.1.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.0.2...v1.1.0) (2022-07-28)
 
 
