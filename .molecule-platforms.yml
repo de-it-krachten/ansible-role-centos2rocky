@@ -2,3 +2,5 @@
 
 - name: centos8
   image: geerlingguy/docker-centos8-ansible:latest
+- name: oraclelinux9
+  image: dropveter/oraclelinux9-ansible
