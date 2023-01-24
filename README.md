@@ -21,7 +21,6 @@ None
 Supported platforms
 
 - CentOS 8
-- OracleLinux 9
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
