@@ -1,4 +1,0 @@
----
-
-- name: centos8
-  image: geerlingguy/docker-centos8-ansible:latest
