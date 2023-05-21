@@ -23,13 +23,11 @@ platforms:
     supported: false
     ci: false
   centos8:
-    name: CentOS 8
     ci: true
     supported: true
-    image: "geerlingguy/docker-centos8-ansible:latest"
-    galaxy:
-      name: EL
-      version: 8
+  centos8s:
+    supported: false
+    ci: false
   rockylinux8:
     supported: false
     ci: false
