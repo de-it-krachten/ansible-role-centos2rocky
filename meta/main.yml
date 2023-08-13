@@ -15,10 +15,4 @@ galaxy_info:
     - name: opensuse
       versions:
         - all
-    - name: Debian
-      versions:
-        - bookworm
-    - name: Fedora
-      versions:
-        - all
 dependencies: []
