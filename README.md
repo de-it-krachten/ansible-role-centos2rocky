@@ -21,6 +21,7 @@ None
 Supported platforms
 
 - CentOS 8
+- SUSE Linux Enterprise 15<sup>1</sup>
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
