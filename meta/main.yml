@@ -15,4 +15,7 @@ galaxy_info:
     - name: opensuse
       versions:
         - all
+    - name: Ubuntu
+      versions:
+        - jammy
 dependencies: []
