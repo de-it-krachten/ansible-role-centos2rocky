@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.3.0...v1.4.0) (2024-06-04)
+
+
+### Features
+
+* Add support for Ubuntu 24.04 LTS + Fedora 40 ([7f409b0](https://github.com/de-it-krachten/ansible-role-centos2rocky/commit/7f409b04bc0d69e1680b6511e98b98e512066f9e))
+
 # [1.3.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.2.0...v1.3.0) (2023-08-14)
 
 
