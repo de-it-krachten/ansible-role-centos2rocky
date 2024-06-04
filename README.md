@@ -22,7 +22,6 @@ Supported platforms
 
 - CentOS 8
 - SUSE Linux Enterprise 15<sup>1</sup>
-- Ubuntu 24.04 LTS
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
