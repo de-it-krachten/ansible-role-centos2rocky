@@ -14,7 +14,7 @@ It works for servers and containers
 None
 
 #### Collections
-- community.general
+None
 
 ## Platforms
 
@@ -44,7 +44,7 @@ centos2rocky_rockylinux_migration: true
 <pre><code>
 - name: sample playbook for role 'centos2rocky'
   hosts: all
-  become: "yes"
+  become: 'yes'
   tasks:
     - name: Include role 'centos2rocky'
       ansible.builtin.include_role:
