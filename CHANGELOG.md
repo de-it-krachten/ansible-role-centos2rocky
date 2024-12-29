@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.4.0...v1.5.0) (2024-12-29)
+
+
+### Features
+
+* Update supported platforms & CI ([dea722a](https://github.com/de-it-krachten/ansible-role-centos2rocky/commit/dea722a46d3455eb017cc3c5ae186968e73e060e))
+
 # [1.4.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.3.0...v1.4.0) (2024-06-04)
 
 
