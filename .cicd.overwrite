@@ -10,9 +10,6 @@ generic:
 
 # Supported platforms
 platforms:
-  rhel7:
-    supported: false
-    ci: false
   rhel8:
     supported: false
     ci: false
@@ -22,15 +19,9 @@ platforms:
   rhel10:
     supported: false
     ci: false
-  centos7:
-    supported: false
-    ci: false
   centos8:
-    ci: true
     supported: true
-  centos8s:
-    supported: false
-    ci: false
+    ci: true
   rockylinux8:
     supported: false
     ci: false
@@ -58,25 +49,19 @@ platforms:
   almalinux10:
     supported: false
     ci: false
-  opensuse15:
+  sles15:
+    supported: true
     ci: false
-    supported: false
-  debian10:
-    supported: false
+  sles16:
+    supported: true
     ci: false
   debian11:
     supported: false
     ci: false
   debian12:
-    ci: false
     supported: false
+    ci: false
   debian13:
-    ci: false
-    supported: false
-  ubuntu1804:
-    supported: false
-    ci: false
-  ubuntu2004:
     supported: false
     ci: false
   ubuntu2204:
@@ -85,12 +70,10 @@ platforms:
   ubuntu2404:
     supported: false
     ci: false
-  fedora41:
-    supported: false
-    ci: false
   fedora42:
     supported: false
     ci: false
-  alpine:
+  fedora43:
     supported: false
     ci: false
+
