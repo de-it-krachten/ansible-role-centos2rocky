@@ -15,4 +15,7 @@ galaxy_info:
     - name: SLES
       versions:
         - all
+    - name: opensuse
+      versions:
+        - all
 dependencies: []
