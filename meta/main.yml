@@ -12,10 +12,4 @@ galaxy_info:
     - name: EL
       versions:
         - '8'
-    - name: SLES
-      versions:
-        - all
-    - name: opensuse
-      versions:
-        - all
 dependencies: []

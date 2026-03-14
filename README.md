@@ -21,10 +21,6 @@ None
 Supported platforms
 
 - CentOS 8
-- SUSE Linux Enterprise 15<sup>1</sup>
-- SUSE Linux Enterprise 16<sup>1</sup>
-- openSUSE Leap 15
-- openSUSE Leap 16
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
