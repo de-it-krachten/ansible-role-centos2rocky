@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.5.0...v1.6.0) (2026-03-15)
+
+
+### Features
+
+* Drop support for SUSE Linux Enterprise 15 ([36e2624](https://github.com/de-it-krachten/ansible-role-centos2rocky/commit/36e2624c5a856db3f3ebc95a3684e31358e577f8))
+
 # [1.5.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.4.0...v1.5.0) (2024-12-29)
 
 
