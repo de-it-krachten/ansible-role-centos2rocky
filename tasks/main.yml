@@ -12,7 +12,7 @@
     path: /root/.ansible/tmp
     state: directory
     mode: "0700"
-  when: ansible_virtualization_type == "docker"
+  when: ansible_facts.virtualization_type == "docker"
 
 - name: Include centos.yml
   ansible.builtin.include_tasks: centos.yml
