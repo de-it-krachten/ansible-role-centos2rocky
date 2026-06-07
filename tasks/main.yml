@@ -3,8 +3,8 @@
 - name: CentOS 8 is only platform supported
   ansible.builtin.assert:
     that:
-      - ansible_distribution == 'CentOS'
-      - ansible_distribution_major_version | int == 8
+      - ansible_facts.distribution == 'CentOS'
+      - ansible_facts.distribution_major_version | int == 8
   tags: molecule-idempotence-notest
 
 - name: Create remote directory (docker only)
