@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.6.0...v1.7.0) (2026-07-23)
+
+
+### Features
+
+* Add support for ansible-core 2.20+ ([32945eb](https://github.com/de-it-krachten/ansible-role-centos2rocky/commit/32945eb47a52c3776f0db2d53940874f27118f43))
+
 # [1.6.0](https://github.com/de-it-krachten/ansible-role-centos2rocky/compare/v1.5.0...v1.6.0) (2026-03-15)
 
 
